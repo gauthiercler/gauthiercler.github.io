@@ -23,6 +23,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/index.html";
           },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
         },{id: "post-adversarial-attacks",
         
           title: "Adversarial Attacks",
@@ -40,20 +47,6 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("mailto:%67%61%75%74%68%69%65%72 [%64%6F%74] %63%6C%65%72 [%61%74] %67%6D%61%69%6C [%64%6F%74] %63%6F%6D", "_blank");
-        },
-      },{
-        id: 'social-rss',
-        title: 'RSS Feed',
-        section: 'Socials',
-        handler: () => {
-          window.open("/feed.xml", "_blank");
-        },
-      },{
-        id: 'social-custom_social',
-        title: 'Custom_social',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://www.alberteinstein.com/", "_blank");
         },
       },{
       id: 'light-theme',
