@@ -11,15 +11,15 @@ related_publications: true
 bibliography: adversarial.bib
 ---
 
-Adversarial attacks on machine learning is a wide domain of interest.
-
-In this post, we cover only **white box adversarial attacks**. In a white box setting, the attacker has access to all the information used for training the model, its weights and parameters, along the used datasets for training.
+Adversarial attacks on machine learning is a wide domain of interest. In this first, we cover white box adversarial attacks using the gradient sign method. In a white box setting, the attacker has access to all the information used for training the model, its weights and parameters, along the used datasets for training.
 
 ### FGSM
 
 The Fast Gradient Sign Method (FGSM) is a straightforward approach proposed in <d-cite key="goodfellow2015explainingharnessingadversarialexamples"></d-cite> to generate adversarial sample from a trained model. Given the model parameters $\boldsymbol{\theta}$, some input samples $\boldsymbol{x}$ and associated ground truth label $y$, the general objective that the model aims at minimizing during training is defined as:
 
-$$J(\boldsymbol{\theta}, \boldsymbol{x}, y)$$
+$$
+J(\boldsymbol{\theta}, \boldsymbol{x}, y)
+$$
 
 The adversarial perturbation is given as:
 
@@ -40,4 +40,30 @@ $$
 \boldsymbol{\eta} = \epsilon \text{sign}(\nabla_{\boldsymbol{x}} J(\boldsymbol{\theta}, \boldsymbol{x}, \hat{y})).
 $$
 
-This time, as we aim at going in the direction that minimize the loss (instead of maximizing it) of the target class $\hat{y}$, the adversarial sample becomes $\boldsymbol{x'} = \boldsymbol{x} - \boldsymbol{\eta}$. 
+This time, as we aim at going in the direction that minimize the loss (instead of maximizing it) of the target class $\hat{y}$, the adversarial sample becomes $\boldsymbol{x'} = \boldsymbol{x} - \boldsymbol{\eta}$. The choice of the target class can be motivated by a specific attack strategy (for example predict dogs as cats). In <d-cite key="kurakin2017adversarialexamplesphysicalworld"></d-cite>, authors suggest to choose the least likely class based on the trained model prediction:
+
+$$
+\hat{y} = \underset{y}{\arg\min} \{p(y|\boldsymbol{x})\} 
+$$
+
+This is motivated by the fact that least likely predicted class in is higly dissimilar to the actual true class. This can be used to maximize the model misclassification.
+
+This adversarial process can also be applied iteratively with a small step size. 
+
+$$
+\boldsymbol{x'}_{n + 1} = \boldsymbol{x'}_{n} - \epsilon \text{sign}(\nabla_{\boldsymbol{x}_n} J(\boldsymbol{\theta}, \boldsymbol{x}, \hat{y}))
+$$
+
+<aside><p>Note that clipping may be necessary depending on the data used.</p></aside>
+
+
+with $\boldsymbol{x'}_{0} = \boldsymbol{x}$. This latter approach is more effective than the former one step generation as it produce smaller perturbations and is less destructive.
+
+### Adversarial training
+
+This adversarial generation method can be used as a regularization for training more robust models. In its simplest way, it can be formulated as:
+
+$$
+\tilde{J}(\boldsymbol{\theta}, \boldsymbol{x}, y) = \alpha J(\boldsymbol{\theta}, \boldsymbol{x}, y) + (1 - \alpha) \epsilon \text{sign}(\nabla_{\boldsymbol{x}} J(\boldsymbol{\theta}, \boldsymbol{x}, y)).
+$$
+
