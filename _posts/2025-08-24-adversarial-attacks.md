@@ -61,9 +61,10 @@ with $\boldsymbol{x'}_{0} = \boldsymbol{x}$. This latter approach is more effect
 
 ### Adversarial training
 
-This adversarial generation method can be used as a regularization for training more robust models. In its simplest way, it can be formulated as:
+This adversarial generation method can also be used as a regularization for training more robust models. In its simplest way, adversarial training can be formulated as:
 
 $$
 \tilde{J}(\boldsymbol{\theta}, \boldsymbol{x}, y) = \alpha J(\boldsymbol{\theta}, \boldsymbol{x}, y) + (1 - \alpha) \epsilon \text{sign}(\nabla_{\boldsymbol{x}} J(\boldsymbol{\theta}, \boldsymbol{x}, y)).
 $$
 
+with hyperparameters $\epsilon$ and $\alpha$ acting on the perturbation level and the regularization balancing between the two terms respectively.
