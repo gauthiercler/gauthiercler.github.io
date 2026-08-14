@@ -1,16 +1,14 @@
 ---
 layout: distill
-title: "From templates to neural networks: an intuitive journey on profiled side channel attacks"
+title: "From templates to neural networks"
 date: 2026-07-31
-description: A post building from template attacks and their limitations to the neural networks that have driven the field in recent years
+description: “An intuitive journey on profiled side channel attacks”
 tags: side-channel, neural networks, template
 related_posts: false
 related_publications: true
 
 bibliography: template-dl.bib
 ---
-
-# From templates to neural networks: an intuitive journey on profiled side channel attacks
 
 Profiled attacks are the strongest scenario for an attacker when performing side channel attacks. Thanks to the access to an open device, leakage characterization can be performed prior to the attack on the closed target device. Since 2002, the standard tool for profiled attacks was the template method. However, since, neural networks have been introduced as a powerful alternative and studied thoroughly. 
 
@@ -40,7 +38,7 @@ The profiled classification problem can be defined as follow. Given a set of ind
 
 Then, the fitted model $f$ is applied on traces from the target device to predict the intermediate values of the unknown fixed key. This is known as the matching phase.
 
-Note that we assume perfect portability between open and target devices. In practice, between devices portability and measurement differences can affect the matching phase. <d-cite key="bhasin_portability"></d-cite><d-cite key="choudary_portability"></d-cite>
+Note that we assume perfect portability between open and target devices. In practice, between devices portability and measurement differences can affect the matching phase. <d-cite key="choudary_portability"></d-cite>
 
 Now, the question that arises is how to construct an accurate model that maps the leakage observed on a device $A$ to a device $B$.
 
