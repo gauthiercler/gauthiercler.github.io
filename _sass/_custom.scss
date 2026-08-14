@@ -1,0 +1,10 @@
+/* Enable horizontal scrolling for block equations on mobile */
+mjx-container[display="true"], 
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-bottom: 5px; /* Prevents scrollbar from clipping the bottom of equations */
+    margin-bottom: 1rem;
+}
