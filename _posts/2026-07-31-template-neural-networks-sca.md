@@ -2,8 +2,8 @@
 layout: distill
 title: "From templates to neural networks"
 date: 2026-07-31
-description: “An intuitive journey on profiled side channel attacks”
-tags: side-channel, neural networks, template
+description: An intuitive journey on profiled side channel attacks
+tags: side-channel “neural networks” template
 related_posts: false
 related_publications: true
 
@@ -58,7 +58,7 @@ From there the prediction step uses the discriminant (or score function) for eac
 
 $$\delta_k(x) = -\frac{1}{2}\log|\Sigma_k|-\frac{1}{2}(x-\mu_k)^T\Sigma^{-1}_k(x-\mu_k) + \log P(k)$$
 
-<aside><p>In practice, if the prior P(k) is uniform (for example 256 classes AES byte), it is often dropped, then the QDA becomes a pure MLE classifier instead of a MAP classifier</p></aside>
+<aside><p>In practice, if the prior $P(k)$ is uniform (for example 256 classes AES byte), it is often dropped, then the QDA becomes a pure MLE classifier instead of a MAP classifier</p></aside>
 
 Then the prediction is the class with the highest score:
 
@@ -72,7 +72,9 @@ This allows to recover the bayesian posterior $p(k|x)$.
 
 While powerful, the main problem of the QDA method is that it scales poorly. Indeed, many samples are needed for each class to ensure correct covariance matrices estimation and avoid singularities.
 
-To reduce the complexity, many works use instead the Linear Discriminant Analysis (LDA), also known as a pooled template <d-cite key="choudary_lda"></d-cite> in the side channel domain. It reduces to a single shared covariance matrix across all classes, so $\Sigma_k = \Sigma$ for all $k$. In other words, the ellipsoid shape of all classes is identical, only shifted by their means. <aside><p>this is known as Homoscedasticity.</p></aside>
+To reduce the complexity, many works use instead the Linear Discriminant Analysis (LDA), also known as a pooled template <d-cite key="choudary_lda"></d-cite> in the side channel domain. It reduces to a single shared covariance matrix across all classes, so $\Sigma_k = \Sigma$ for all $k$. In other words, the ellipsoid shape of all classes is identical, only shifted by their means.
+
+<aside><p>This is known as Homoscedasticity.</p></aside>
 
 Since the covariance matrix is now shared, the quadratic term $x^T\Sigma^{-1}x$ becomes identical to all classes and can be dropped, thus the discriminant becomes:
 
@@ -187,7 +189,9 @@ In machine learning field, for general purpose classification accuracy is almost
 
 However, for side channel profiled attacks with traces accumulation, thats not necessarily the case.
 
-As the predictions are combined among several traces, the goal is to obtain a decrease of entropy. That is why the rank of the correct key (argsort) is seen as a better indicator of performance. Even an average rank slightly higher to random can be sufficient for key recovery by accumulating enough traces. <aside><p>If the rank of the correct value is always 2, the resulting accuracy is equal to zero.</p></aside>
+As the predictions are combined among several traces, the goal is to obtain a decrease of entropy. That is why the rank of the correct key (argsort) is seen as a better indicator of performance. Even an average rank slightly higher to random can be sufficient for key recovery by accumulating enough traces.
+
+<aside><p>If the rank of the correct value is always 2, the resulting accuracy is equal to zero.</p></aside>
 
 It mainly depends on what is the goal and the attack path.
 
@@ -198,7 +202,9 @@ As described above for both template and neural network, we obtain a probability
 
 From there, several methods can be used to combine these probabilities.
 One way can be to simply multiply each guess value across several realizations. After accumulation, the largest resulting probability is the most probable candidate.
-<aside><p>For numerical stability on large set of accumulations, we often do the sum of log’s probabilities instead</aside><p>
+
+<aside><p>For numerical stability on large set of accumulations, we often do the sum of log’s probabilities instead</aside></p>
+
 Others smarter approaches exist to combine probabilities, such as histogram exploration or belief propagation (for several intermediate values).
 
 For neural networks, it is a good habit to monitor the average rank of the correct class (on batches) during the training. This allows to see if the model is able to learn on the data or not.
