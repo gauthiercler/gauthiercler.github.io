@@ -130,7 +130,8 @@ $$f(x) = f_L(\cdots f_2(f_1(x)))$$
 This composition of layers is known as Multilayer Perceptron (MLP).
 
 It is possible to imagine the neural network composition as a straight line bended at each activation. The following figure illustrates the boundary difference between the LDA, QDA and neural network:
-![](boundary.png)
+
+{% include figure.liquid loading="eager" path="assets/img/boundary.jpg" class="img-fluid rounded z-depth-1" zoomable=true caption=caption_text%}
 
 Without non linear activations, the model would simply be a composition of affine maps, and would not be able to model higher degrees polynomial. For the side channel task, it means that if the neural network capacity is sufficient (enough layers and neurons per layers), it can theoretically models/represents masked leakage of any order with enough leaky data examples.
 [Masking remains really effective since the number of traces needed grows exponentially as the number of shares increases. For high order masking, some help is often needed such as data augmentation or precomputed products.
@@ -171,7 +172,7 @@ This can be seen as a pre processing step, but it is powerful as it is done auto
 Essentially, convolutions for neural networks are set of independent filters which parameters are learnt. these filters are slid along the trace like a moving operator with the matrix being the learned convolution weights.
 
 Additionally, in their most basic form, these convolutions are completed with pooling layers, which are used to perform some down sampling. Average or Max pooling layers are usually used.
-<aside><p>more complex convolutions blocks are also used, such as residual blocks, unet,...</aside></p>
+<aside><p>more complex convolutions blocks are also used, such as residual blocks, unet,...</p></aside>
 
 The output of these blocks is then flattened and usually plugged into the logical part of the network which consists in an MLP classification head.
 [keep in mind that unlimited architecture variants are possible, this is just for explanation purposes]. 
