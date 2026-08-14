@@ -28,7 +28,7 @@ The relationship between the obtained trace and the secret is defined through a 
 - the Identity model, where the signal depends on the exact intermediate value
 - the Hamming weight/distance model, where for CMOS circuits, consumption is tied to bit transitions
 
-Let’s now consider for the sake of simplicity a widely studied cryptographic primitive target, the AES first round S-box output $y = \text{Sbox}(p \oplus k)$ for a single byte, with known plaintext $p$ and secret key $k$. Recovering $y$ allows to recover $k$ since $p$ is known. The search space is a 256 classes (8 bit) classification problem.
+Let’s now consider for the sake of simplicity a widely studied cryptographic primitive target, the AES first round S-box output $y = \text{Sbox}(p \oplus k)$ for a single byte, with known plaintext $p$ and secret key $k$. Recovering $y$ allows to recover $k$ since $p$ is known. The search space is a $Y=256$ classes (8 bit) classification problem.
 
 Theoretically, this could be tackled entirely through a non-profiled attack such as a CPA or MIA, without the need of an open device. However, we focus in this post on the other approach, where prior characterization of the leakage is performed on a clone open device.
 
@@ -68,7 +68,7 @@ It is also possible to map to the probability simplex $p(\mathbf{x}) \in \Delta^
 
 $$p_y(\mathbf{x}) = \frac{\exp(\delta_y(\mathbf{x}))}{\sum_{j=1}^Y\exp(\delta_j(\mathbf{x}))}$$
 
-This allows to recover the bayesian posterior $p(y|\mathbf{x})$.
+This allows to recover the bayesian posterior $p(y \mid \mathbf{x})$.
 
 While powerful, the main problem of the QDA method is that it scales poorly. Indeed, many samples are needed for each class to ensure correct covariance matrices estimation and avoid singularities.
 
@@ -169,25 +169,31 @@ Additionally, the training for the neural network is a stochastic process and th
 
 We saw that MLP can model non-linear high order leakages, but like the template they still require aligned temporal points of each sub-leakage for optimal exploitation.
 
+It is possible to learn the feature extraction step inside the model itself using Convolutional Neural Networks (CNN). In our case, we rely on one dimensional convolution layers, which are analogous to the convolutions used in signal processing.
 
-It is possible to learn inside the model the feature extraction step. This can be performed by using convolution layers. This is analogous to convolution used in signal processing.
+Instead of fully connected layers with shared weights, a convolutional layer uses a set of independent learnable filters. For a given filter $\mathbf{w}$ of size $F$, the output feature map $h$ at index $i$ over the trace $\mathbf{x}$ is given as:
 
-This can be seen as a pre processing step, but it is powerful as it is done automatically during the training.
+$$h_i = \phi\left(\sum_{j=0}^{F-1} \mathbf{x}_{i+j} \mathbf{w}_j + b\right)$$
 
-Essentially, convolutions for neural networks are set of independent filters which parameters are learnt. these filters are slid along the trace like a moving operator with the matrix being the learned convolution weights.
+These filters are slid along the trace like a moving operator with the matrix being the learned convolution weights.
 
-Additionally, in their most basic form, these convolutions are completed with pooling layers, which are used to perform some down sampling. Average or Max pooling layers are usually used.
+Additionally, in their most basic form, these convolutions are completed with pooling layers (average or maximum), which are used to perform some down sampling during the feature extraction.
+
 <aside><p>more complex convolutions blocks are also used, such as residual blocks, unet,...</p></aside>
 
 The output of these blocks is then flattened and usually plugged into the logical part of the network which consists in an MLP classification head.
 
 <aside><p>Keep in mind that unlimited architecture variants are possible.</p></aside>⁠
 
-Extensive research has been performed in the side channel domain since the introduction of neural networks for profiled attacks (2016), Some works aimed at proposing methodology for selecting the optimal architecture parameters <d-cite key="zaid_methodology"></d-cite>, visualisation and explainability <d-cite key="masure_gradient"></d-cite>.
+These convolution blocks emphasize some desirable properties for leakage extraction of profiled attacks.
 
-It is also relevant to note that convolutions can have a recombination effect if multiple shares are manipulated at close temporal intervals.
+Firstly, convolutions can have a recombination effect if multiple shares are manipulated at close temporal intervals.
 
-This allows a fully differentiable self-contained preprocessing/filtering + feature extraction + classifier head pipeline.
+This is also related to the capability to negate jitter or desynchronization with the usage of overlapping filters and pooling layers.
+
+Extensive research has been performed for applying neural network to the task of side channel attacks. Some works aimed at proposing methodology for selecting the optimal architecture parameters <d-cite key="zaid_methodology"></d-cite>, others for visualisation and explainability <d-cite key="masure_gradient"></d-cite>.
+
+The combination of CNN and MLP allows a fully differentiable self-contained pipeline for preprocessing, features extraction and classification.
 
 ## Accuracy is not the key
 
