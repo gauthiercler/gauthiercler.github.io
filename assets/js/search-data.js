@@ -34,7 +34,7 @@ ninja.data = [{
         
           title: "From templates to neural networks",
         
-        description: "“An intuitive journey on profiled side channel attacks”",
+        description: "An intuitive journey on profiled side channel attacks",
         section: "Posts",
         handler: () => {
           
