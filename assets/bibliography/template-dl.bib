@@ -1,0 +1,84 @@
+@misc{cagli_cnn_augmentation,
+      author = {Eleonora Cagli and Cécile Dumas and Emmanuel Prouff},
+      title = {Convolutional Neural Networks with Data Augmentation against Jitter-Based Countermeasures -- Profiling Attacks without Pre-Processing --},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2017/740},
+      year = {2017},
+      url = {https://eprint.iacr.org/2017/740}
+}
+
+@InProceedings{standaert_framework,
+author="Standaert, Fran{\c{c}}ois-Xavier
+and Malkin, Tal G.
+and Yung, Moti",
+editor="Joux, Antoine",
+title="A Unified Framework for the Analysis of Side-Channel Key Recovery Attacks",
+booktitle="Advances in Cryptology - EUROCRYPT 2009",
+year="2009",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="443--461",
+abstract="The fair evaluation and comparison of side-channel attacks and countermeasures has been a long standing open question, limiting further developments in the field. Motivated by this challenge, this work makes a step in this direction and proposes a framework for the analysis of cryptographic implementations that includes a theoretical model and an application methodology. The model is based on commonly accepted hypotheses about side-channels that computations give rise to. It allows quantifying the effect of practically relevant leakage functions with a combination of information theoretic and security metrics, measuring the quality of an implementation and the strength of an adversary, respectively. From a theoretical point of view, we demonstrate formal connections between these metrics and discuss their intuitive meaning. From a practical point of view, the model implies a unified methodology for the analysis of side-channel key recovery attacks. The proposed solution allows getting rid of most of the subjective parameters that were limiting previous specialized and often ad hoc approaches in the evaluation of physically observable devices. It typically determines the extent to which basic (but practically essential) questions such as ``How to compare two implementations?'' or ``How to compare two side-channel adversaries?'' can be answered in a sound fashion.",
+isbn="978-3-642-01001-9"
+}
+
+@article{zaid_methodology, title={Methodology for Efficient CNN Architectures in Profiling Attacks}, volume={2020}, url={https://tches.iacr.org/index.php/TCHES/article/view/8391}, DOI={10.13154/tches.v2020.i1.1-36}, abstractNote={
+The side-channel community recently investigated a new approach, based on deep learning, to significantly improve profiled attacks against embedded systems. Previous works have shown the benefit of using convolutional neural networks (CNN) to limit the effect of some countermeasures such as desynchronization. Compared with template attacks, deep learning techniques can deal with trace misalignment and the high dimensionality of the data. Pre-processing is no longer mandatory. However, the performance of attacks depends to a great extent on the choice of each hyperparameter used to configure a CNN architecture. Hence, we cannot perfectly harness the potential of deep neural networks without a clear understanding of the network’s inner-workings. To reduce this gap, we propose to clearly explain the role of each hyperparameters during the feature selection phase using some specific visualization techniques including Weight Visualization, Gradient Visualization and Heatmaps. By highlighting which features are retained by filters, heatmaps come in handy when a security evaluator tries to interpret and understand the efficiency of CNN. We propose a methodology for building efficient CNN architectures in terms of attack efficiency and network complexity, even in the presence of desynchronization. We evaluate our methodology using public datasets with and without desynchronization. In each case, our methodology outperforms the previous state-of-the-art CNN models while significantly reducing network complexity. Our networks are up to 25 times more efficient than previous state-of-the-art while their complexity is up to 31810 times smaller. Our results show that CNN networks do not need to be very complex to perform well in the side-channel context.
+}, number={1}, journal={IACR Transactions on Cryptographic Hardware and Embedded Systems}, author={Zaid, Gabriel and Bossuet, Lilian and Habrard, Amaury and Venelli, Alexandre}, year={2019}, month={Nov.}, pages={1–36} }
+
+@InProceedings{chari_template,
+author="Chari, Suresh
+and Rao, Josyula R.
+and Rohatgi, Pankaj",
+editor="Kaliski, Burton S.
+and Ko{\c{c}}, {\c{c}}etin K.
+and Paar, Christof",
+title="Template Attacks",
+booktitle="Cryptographic Hardware and Embedded Systems - CHES 2002",
+year="2003",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="13--28",
+abstract="We present template attacks, the strongest form of side channel attack possible in an information theoretic sense. These attacks can break implementations and countermeasures whose security is dependent on the assumption that an adversary cannot obtain more than one or a limited number of side channel samples. They require that an adversary has access to an identical experimental device that he can program to his choosing. The success of these attacks in such constraining situations is due manner in which noise within each sample is handled. In contrast to previous approaches which viewed noise as a hindrance that had to be reduced or eliminated, our approach focuses on precisely modeling noise, and using this to fully extract information present in a single sample. We describe in detail how an implementation of RC4, not amenable to techniques such as SPA and DPA, can easily be broken using template attacks with a single sample. Other applications include attacks on certain DES implementations which use DPA-resistant hardware and certain SSL accelerators which can be attacked by monitoring electromagnetic emanations from an RSA operation even from distances of fifteen feet.",
+isbn="978-3-540-36400-9"
+}
+
+@misc{choudary_lda,
+      author = {Omar Choudary and Markus G.  Kuhn},
+      title = {Efficient Template Attacks},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2013/770},
+      year = {2013},
+      url = {https://eprint.iacr.org/2013/770}
+}
+
+@misc{bashin_portability,
+      author = {Shivam Bhasin and Anupam Chattopadhyay and Annelie Heuser and Dirmanto Jap and Stjepan Picek and Ritu Ranjan Shrivastwa},
+      title = {Mind the Portability: A Warriors Guide through Realistic Profiled Side-channel Analysis},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2019/661},
+      year = {2019},
+      url = {https://eprint.iacr.org/2019/661}
+}
+
+@misc{choudary_portability,
+      author = {Omar Choudary and Markus G.  Kuhn},
+      title = {Template Attacks on Different Devices},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2014/459},
+      year = {2014},
+      url = {https://eprint.iacr.org/2014/459}
+}
+
+@misc{masure_gradient,
+      author = {Loïc Masure and Cécile Dumas and Emmanuel Prouff},
+      title = {Gradient Visualization for General Characterization in Profiling Attacks},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2018/1196},
+      year = {2018},
+      doi = {10.1007/978-3-030-16350-1_9},
+      url = {https://eprint.iacr.org/2018/1196}
+}
+
+@misc{zaid_rankinf_loss,
+      author = {Gabriel Zaid and Lilian Bossuet and François Dassance and Amaury Habrard and Alexandre Venelli},
+      title = {Ranking Loss: Maximizing the Success Rate in Deep Learning Side-Channel Analysis},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2020/872},
+      year = {2020},
+      url = {https://eprint.iacr.org/2020/872}
+}
