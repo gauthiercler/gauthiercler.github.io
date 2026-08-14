@@ -203,7 +203,7 @@ As described above for both template and neural network, we obtain a probability
 From there, several methods can be used to combine these probabilities.
 One way can be to simply multiply each guess value across several realizations. After accumulation, the largest resulting probability is the most probable candidate.
 
-<aside><p>For numerical stability on large set of accumulations, we often do the sum of log’s probabilities instead</aside></p>
+<aside><p>For numerical stability on large set of accumulations, we often do the sum of log probabilities instead.</p></aside>
 
 Others smarter approaches exist to combine probabilities, such as histogram exploration or belief propagation (for several intermediate values).
 
