@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-adversarial-attacks",
+        },{id: "post-from-templates-to-neural-networks-an-intuitive-journey-on-profiled-side-channel-attacks",
+        
+          title: "From templates to neural networks: an intuitive journey on profiled side channel attacks...",
+        
+        description: "A post building from template attacks and their limitations to the neural networks that have driven the field in recent years",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/template-neural-networks-sca/";
+          
+        },
+      },{id: "post-adversarial-attacks",
         
           title: "Adversarial Attacks",
         
