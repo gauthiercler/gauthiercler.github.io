@@ -3,7 +3,7 @@ layout: distill
 title: "From templates to neural networks"
 date: 2026-07-31
 description: An intuitive journey on profiled side channel attacks
-tags: [“side-channel”, “neural networks”, “template attack”]
+tags: side-channel, neural-networks, template-attack
 related_posts: false
 related_publications: true
 
